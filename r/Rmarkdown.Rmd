@@ -1,17 +1,31 @@
-Title
+Useful R Scripts
 ========================================================
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **Help** toolbar button for more details on using R Markdown).
+#Databases
+Figured out how to easily write dataframes to database
+```{r WritetoDatabase}
+library(RSQLite)
 
-When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#Open database object
+db = dbConnect("SQLite", dbname = "C:/sqlite/irisdb.db")
 
-```{r}
-summary(cars)
+dbWriteTable(db, "IrisTable", iris)
 ```
 
-You can also embed plots, for example:
 
-```{r fig.width=7, fig.height=6}
-plot(cars)
+#Dplyr
+##Useful References
+This page has a good explanation on dplyr
+http://www.r-bloggers.com/when-i-use-plyrdplyr/
+
+This page is a good comparison
+http://scicomp2014.edc.uri.edu/posts/2014-04-14-Smith.html
+
+##Sample Code
+```{r dplr}
+library(dplyr)
+
+summarise(group_by(iris, Species), Total = sum(Sepal.Length))
 ```
+
 
